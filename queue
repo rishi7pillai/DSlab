@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef struct node {
+    int data;
+    int data2;
+    struct node *link;
+}node;
+node *frnt,*rear;
+
+   void enque()
+   {
+          node *ptr;
+          ptr=(node*)malloc(sizeof(node)) ;
+          cout<<"\nEnter the data element:";
+          cin>>ptr->data;
+          cout<<"\nEnter the priority of element:";
+          cin>>ptr->data2;
+          ptr->link==NULL;
+          if(frnt==NULL)
+          {
+             frnt=rear=ptr;
+          }
+          else
+          {
+             rear->link=ptr;
+             rear=ptr;
+          }
+          cout<<"\nNode inserted";
+   }
+
+   void pque()
+   {
+          node *ptr;
+          ptr=(node*)malloc(sizeof(node)) ;
+          cout<<"\nEnter the data element:";
+          cin>>ptr->data;
+          cout<<"\nEnter the priority of element:";
+           cin>>ptr->data2;
+          ptr->link==NULL;
+          node *temp=frnt;
+          while(temp->data2!=ptr->data2)
+          {
+               temp=temp->link;
+          }
+          node *te=temp->link;
+          temp->link=ptr;
+          ptr->link=te;
+   }
+void dequ()
+{
+    if(frnt==NULL)
+    {
+        cout<<"\nQueue is Empty.";
+    }
+    else
+    {
+        node *temp=frnt;
+        frnt=frnt->link;
+        cout<<"\nDeleted element is:"<<temp->data;
+        free(temp);
+    }
+
+}
+void disp()
+{
+  if(frnt==NULL)
+    {
+        cout<<"\nQueue is Empty.";
+    }
+    else
+    {
+        node *temp=frnt;
+        while(temp!=NULL)
+        {
+              cout<<" "<<temp->data;
+             // cout<<"pr"<<temp->data2;
+              temp=temp->link;
+        }
+       // cout<<" "<<temp->data;
+    }
+  }
+
+int main()
+{
+     int ch;
+     do
+      {
+          cout<<"\n\t1.insert the element into queue. \n\t2.delete the element from queue.\n\t3.Display all the element.\n\t4.Enter the priorty queue";
+          cout<<"\nEnter the choose:";
+          cin>>ch;
+          switch(ch)
+          {
+            case 1:
+                     enque();
+                     break;
+            case 2:
+                     dequ();
+                     break;
+            case 3:
+                    disp();
+                    break;
+            case 4:
+                   pque();
+                   break;
+          }
+      }while(ch!=5);
+
+}
